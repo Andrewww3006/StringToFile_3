@@ -7,26 +7,30 @@ import java.io.IOException;
 
 public class Main {
 
-     public static void main(String[] args) throws IOException{
+     public static void main(String[] args){
          // write your code here
 
          try (FileWriter fileWriter = new FileWriter("out.txt")) {
-             StringBuffer text = new StringBuffer("привет\nазиза\nжопа\nтот\n");
-             fileWriter.write(text.toString());
+             fileWriter.write("поп\nазиза\nжопа\nтот\n");
          } catch (IOException ex) {
              System.out.println(ex.getMessage());
 
          }
-
+         String str;
+         StringBuilder sb = new StringBuilder();
+         StringBuilder sb2 = new StringBuilder();
          try (BufferedReader fileReader = new BufferedReader(new FileReader("out.txt"))) {
-             StringBuffer str = new StringBuffer();
              while ((str=fileReader.readLine()) != null) {
-                 if (str.toString() == str.reverce)
-                 System.out.println(str);
-
+                     sb.append(str);
+                     sb2.append(sb.reverse());
+                     sb.reverse();
+                     if (sb == sb2) {
+                         System.out.println(sb);
+                     }
+                     sb.delete(0,sb.length());
+                     sb2.delete(0,sb2.length());
              }
          }
-
             catch (IOException ex){
                 System.out.println(ex.getMessage());
          }
